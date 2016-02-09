@@ -1,0 +1,161 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+
+    font-size: inherit !important;
+}
+
+#libe-menu {
+    height: auto !important;
+}
+
+.main-nav .close {
+    float: none !important;
+}
+
+body h1 {
+    margin: 0;
+    padding: 1em;
+
+    background-color: #ffffff;
+
+    font-family: 'libesansweb-semicondensed', sans-serif;
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: .85em;
+    text-align: center;
+}
+
+body h2 {
+    display: inline-block;
+    float: left;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: 'syntheselibeweb', sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.steps__top {
+    position: absolute;
+    top: 3.5em;
+    left: 50%;
+    z-index: 48;
+
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+}
+
+.steps__bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 48;
+
+    width: 750px;
+    max-width: 100%;
+
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+}
+
+.steps p {
+    padding: 1em;
+    margin: 0;
+
+    background-color: #ffffff;
+
+    font-family: 'syntheselibeweb', sans-serif;
+}
+
+.steps p span {
+    color: #e61e49;
+    font-weight: bold;
+}
+
+.steps a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.steps button {
+    display: inline-block;
+
+    position: absolute;
+    top: 50%;
+    z-index: 48;
+
+    background-color: transparent;
+
+    font-weight: 800;
+    font-size: 4.5em;
+    color: #e61e49;
+
+    -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+
+    cursor: pointer;
+}
+
+.steps button:first-of-type {
+    left: 0;
+}
+
+.steps button:last-of-type {
+    right: 0;
+}
+
+.steps button, .steps button:focus, .steps button:active, .steps button:hover {
+    border-style: none !important;
+}
+
+.steps button[disabled] {
+    color: #c6c6c6 !important;
+
+    cursor: default;
+}
+
+#sigma-container {
+    position: relative;
+    z-index: 45;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #ffffff;
+
+    -webkit-transform: translateY(-5%);
+            transform: translateY(-5%);
+}
+
+@media (max-width: 992px) {
+    body h1 {
+        width: 100%;
+        padding: .5em;
+
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .steps__top {
+        top: 3em;
+
+        width: 100%;
+    }
+
+    .steps button {
+        top: 40%;
+    }
+
+    .steps p {
+        font-size: .8em;
+    }
+
+    #sigma-container {
+        -webkit-transform: translateY(-10%);
+                transform: translateY(-10%);
+    }
+}
