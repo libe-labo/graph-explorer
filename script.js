@@ -49,7 +49,6 @@ $(function() {
             container: 'sigma-container',
             type: 'canvas',
             settings: {
-                verbose: true,
                 maxNodeSize: 8
             }
         }, function(sigInstance) {
@@ -148,7 +147,6 @@ $(function() {
             };
 
             sigInstance.graph.nodes().forEach(function(node) {
-                node.size = 0.1;
                 node.originalColor = node.color;
             });
             sigInstance.graph.edges().forEach(function(edge) { edge.originalColor = edge.color = idleColor; });
