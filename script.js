@@ -49,7 +49,8 @@ $(function() {
             container: 'sigma-container',
             type: 'canvas',
             settings: {
-                maxNodeSize: 8
+                maxNodeSize: 8,
+                enableHovering: false
             }
         }, function(sigInstance) {
             var init = false;
