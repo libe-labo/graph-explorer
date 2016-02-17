@@ -1,3 +1,11 @@
+/**
+* @Author: Paul Joannon <paulloz>
+* @Date:   2016-02-17T11:57:04+01:00
+* @Email:  hello@pauljoannon.com
+* @Last modified by:   paulloz
+* @Last modified time: 2016-02-17T11:57:07+01:00
+*/
+
 $(function() {
     var idleColor = '#c6c6c6',
         currentStep = -1,
