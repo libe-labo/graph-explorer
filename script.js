@@ -3,7 +3,7 @@ $(function() {
         currentStep = -1,
         ids = [];
 
-    var ratio = window.innerWidth > 992 ? 0.2 : 0.3;
+    var ratio = window.innerWidth > 992 ? 0.2 : 0.15;
 
     var moveTo = (function() {
         var timer, time = 50, totalTime = 300, currentTime;
@@ -45,7 +45,7 @@ $(function() {
             };
         });
 
-        sigma.parsers.json('graphe.json', {
+        sigma.parsers.json('graphe-02.json', {
             container: 'sigma-container',
             type: 'canvas',
             settings: {
@@ -129,7 +129,7 @@ $(function() {
                         x, y,
                         currentStep === steps.length - 1
                             ? ratio * 2.5
-                            : [].indexOf(currentStep) >= 0
+                            : [6, 7].indexOf(currentStep) >= 0
                                 ? ratio * 1.5
                                 : ratio
                     );
@@ -155,12 +155,13 @@ $(function() {
             var search = parseInt(window.location.search.replace(/^\?/, '')),
                 step = isNaN(search) ? 0 : search < steps.length ? search : 0;
 
-            changeStep(step);
+            changeStep(0);
             $('.steps').find('button').each(function(i) {
                 $(this).bind('click', (function(i) {
                     return function() {
                         var newStep = currentStep + (i > 0 ? 1 : -1);
                         if (newStep >= 0 && newStep < steps.length) {
+                            $('.help').removeClass('show');
                             changeStep(newStep);
                         }
                     };
@@ -171,6 +172,12 @@ $(function() {
                 sigInstance.cameras[0].ratio = ratio;
                 sigInstance.refresh();
             }, 100);
+
+            setTimeout(function() {
+                if (currentStep <= 0) {
+                    $('.help').addClass('show');
+                }
+            }, 1000);
         });
     });
 });

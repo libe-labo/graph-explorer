@@ -39,6 +39,10 @@ body h2 {
     font-weight: normal;
 }
 
+.steps {
+    width: 100%;
+}
+
 .steps__top {
     position: absolute;
     top: 3.5em;
@@ -88,6 +92,8 @@ body h2 {
     top: 50%;
     z-index: 48;
 
+    padding: 1px 6px;
+
     background-color: transparent;
 
     font-weight: 800;
@@ -131,6 +137,38 @@ body h2 {
             transform: translateY(-5%);
 }
 
+.help {
+    position: absolute;
+    top: 50%;
+    right: 4em;
+    z-index: 49;
+
+    max-width: 15%;
+
+    opacity: 0;
+
+    text-align: right;
+    font-family: 'syntheselibeweb', sans-serif;
+
+    -webkit-transition: all 500ms ease;
+            transition: all 500ms ease;
+
+    pointer-events: none;
+}
+
+.help.show {
+    opacity: 1;
+}
+
+.help .fa {
+    margin-bottom: .1em;
+
+    font-size: 4em;
+
+    -webkit-transform: rotateZ(-33deg);
+            transform: rotateZ(-33deg);
+}
+
 @media (max-width: 992px) {
     body h1 {
         width: 100%;
@@ -157,5 +195,24 @@ body h2 {
     #sigma-container {
         -webkit-transform: translateY(-10%);
                 transform: translateY(-10%);
+    }
+
+    .help {
+        top: 43%;
+        right: .5em;
+        max-width: 25%;
+    }
+
+    .help .fa {
+        font-size: 2em;
+
+        -webkit-transform: rotateZ(-90deg);
+                transform: rotateZ(-90deg);
+    }
+}
+
+@media (min-width: 1280px) {
+    .steps button {
+        font-size: 7em;
     }
 }
