@@ -39,7 +39,7 @@ $(function() {
     $.get('steps.tsv', function(raw) {
         var steps = d3_dsv.tsv.parse(raw, function(d) {
             return {
-                text: d.texte,
+                text: d.text,
                 slug : d.slug,
                 ids: d.nodes.replace(/ +/g, '').split(',')
             };

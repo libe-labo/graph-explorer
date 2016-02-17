@@ -3,7 +3,7 @@
 Le fichier `graph.json` est chargé par [sigma.js](https://github.com/jacomyal/sigma.js/tree/master/plugins/sigma.parsers.json) dès le chargement de la page.  
 L'affichage des nœuds est filtré par rapport à la description présente dans le fichier `steps.tsv`.
 
-| id | slug | texte | nodes |
+| id | slug | text | nodes |
 | --- | ---- | ----- | --------- |
 | 1 | 30 février 2912 | Lorem ipsum dolor sit amet | *&lt;node-id&gt;*,*&lt;node-id&gt;* |
 | 2 | ... | ... | ... |
