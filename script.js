@@ -40,12 +40,12 @@ $(function() {
         var steps = d3_dsv.tsv.parse(raw, function(d) {
             return {
                 text: d.texte,
-                date : d.date,
+                slug : d.slug,
                 ids: d.personnes.replace(/ +/g, '').split(',')
             };
         });
 
-        sigma.parsers.json('graphe-02.json', {
+        sigma.parsers.json('graph.json', {
             container: 'sigma-container',
             type: 'canvas',
             settings: {
@@ -140,7 +140,7 @@ $(function() {
                 }
 
                 $('.steps p').first().html(
-                    '<span>' + steps[currentStep].date + '</span> ' + steps[currentStep].text
+                    '<span>' + steps[currentStep].slug + '</span> ' + steps[currentStep].text
                 );
 
                 $('.steps button').first().attr('disabled', currentStep === 0 ? 'disabled' : null);
