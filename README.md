@@ -16,7 +16,7 @@ Chaque ligne de `steps.tsv` est une étape de la visualisation avec son propre s
 * [sigma.js](https://github.com/jacomyal/sigma.js)
 * [d3-dsv](https://github.com/d3/d3-dsv)
 * [d3-scale](https://github.com/d3/d3-scale)
-* [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
+* [Font Awesome](https://fortawesome.github.io/Font-Awesome/) (un peu overkill pour le peu d'icônes utilisées)
 
 Tout s'installe via `npm` :
 
