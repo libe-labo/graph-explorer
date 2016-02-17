@@ -41,7 +41,7 @@ $(function() {
             return {
                 text: d.texte,
                 slug : d.slug,
-                ids: d.personnes.replace(/ +/g, '').split(',')
+                ids: d.nodes.replace(/ +/g, '').split(',')
             };
         });
 
