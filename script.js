@@ -3,7 +3,7 @@
 * @Date:   2016-02-17T11:57:04+01:00
 * @Email:  hello@pauljoannon.com
 * @Last modified by:   paulloz
-* @Last modified time: 2016-02-17T12:25:23+01:00
+* @Last modified time: 2016-02-17T12:43:25+01:00
 */
 
 $(function() {
@@ -108,25 +108,21 @@ $(function() {
                         });
                         points.sort(function(a, b) { return b.angle - a.angle; }); // And sort by angle
                         // We now have a non self-intersecting polygon
-                        var i, sum;
+                        var i, sum, sumX, sumY;
                         // Compute polygon's area
                         for (i = 0, sum = 0; i < points.length; ++i) {
                             var ip1 = i === points.length - 1 ? 0 : i + 1;
                             sum += (points[i].x * points[ip1].y) - (points[ip1].x * points[i].y);
                         }
                         var a = (1/2) * sum;
-                        // Compute centroid's x
-                        for (i = 0, sum = 0; i < points.length; ++i) {
+                        // Compute centroid's x and y
+                        for (i = 0, sumX = 0, sumY = 0; i < points.length; ++i) {
                             var ip1 = i === points.length - 1 ? 0 : i + 1;
-                            sum += (points[i].x + points[ip1].x) * ((points[i].x * points[ip1].y) - (points[ip1].x * points[i].y));
+                            sumX += (points[i].x + points[ip1].x) * ((points[i].x * points[ip1].y) - (points[ip1].x * points[i].y));
+                            sumY += (points[i].y + points[ip1].y) * ((points[i].x * points[ip1].y) - (points[ip1].x * points[i].y));
                         }
-                        x = (1 / (6 * a)) * sum;
-                        // Compute centroid's y
-                        for (i = 0, sum = 0; i < points.length; ++i) {
-                            var ip1 = i === points.length - 1 ? 0 : i + 1;
-                            sum += (points[i].y + points[ip1].y) * ((points[i].x * points[ip1].y) - (points[ip1].x * points[i].y));
-                        }
-                        y = (1 / (6 * a)) * sum;
+                        x = (1 / (6 * a)) * sumX;
+                        y = (1 / (6 * a)) * sumY;
                     }
                 }
 
