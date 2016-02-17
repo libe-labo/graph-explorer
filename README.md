@@ -1,10 +1,24 @@
+# Explorons des graphs !
+
+Le fichier `graph.json` est chargé par [sigma.js](https://github.com/jacomyal/sigma.js/tree/master/plugins/sigma.parsers.json) dès le chargement de la page.  
+L'affichage des nœuds est filtré par rapport à la description présente dans le fichier `steps.tsv`.
+
+| id | slug | texte | nodes |
+| --- | ---- | ----- | --------- |
+| 1 | 30 février 2912 | Lorem ipsum dolor sit amet | *&lt;node-id&gt;*,*&lt;node-id&gt;* |
+| 2 | ... | ... | ... |
+| ... | ... | ... | ... |
+
+Chaque ligne de `steps.tsv` est une étape de la visualisation avec son propre slug, texte et les nœuds qui doivent y être affichés. Une étape affiche toujours les nœuds de l'étape précédente en plus de ses propres nœuds.
+
 ## Dépendances
 
 * [sigma.js](https://github.com/jacomyal/sigma.js)
 * [d3-dsv](https://github.com/d3/d3-dsv)
 * [d3-scale](https://github.com/d3/d3-scale)
+* [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
 
-## License
+## Licence
 
 > The MIT License (MIT)
 >
