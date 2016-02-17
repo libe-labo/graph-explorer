@@ -3,7 +3,7 @@
 * @Date:   2016-02-17T11:57:04+01:00
 * @Email:  hello@pauljoannon.com
 * @Last modified by:   paulloz
-* @Last modified time: 2016-02-17T11:57:07+01:00
+* @Last modified time: 2016-02-17T12:25:23+01:00
 */
 
 $(function() {
@@ -45,7 +45,7 @@ $(function() {
     })();
 
     $.get('steps.tsv', function(raw) {
-        var steps = d3_dsv.tsv.parse(raw, function(d) {
+        var steps = d3_dsv.tsvParse(raw, function(d) {
             return {
                 text: d.text,
                 slug : d.slug,

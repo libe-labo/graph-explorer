@@ -1,4 +1,12 @@
+# Graph files
 *.gexf
 *.json
+
+# Tsv files
 *.tsv
-sigma.*.js
+
+# Dependencies
+node_modules/
+
+# Do not exclude package.json
+!package.json

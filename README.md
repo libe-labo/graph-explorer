@@ -18,6 +18,12 @@ Chaque ligne de `steps.tsv` est une étape de la visualisation avec son propre s
 * [d3-scale](https://github.com/d3/d3-scale)
 * [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
 
+Tout s'installe via `npm` :
+
+```sh
+$> npm install
+```
+
 ## Licence
 
 > The MIT License (MIT)
