@@ -21,6 +21,8 @@ $(function() {
             // Reset currentTime
             currentTime = 0;
 
+            y += $('.steps p').height() * ratio;
+
             var xScale = d3_scale.scaleLinear().range([camera.x, x]).domain([0, totalTime]),
                 yScale = d3_scale.scaleLinear().range([camera.y, y]).domain([0, totalTime]),
                 ratioScale = d3_scale.scaleLinear().range([camera.ratio, ratio]).domain([0, totalTime]);
