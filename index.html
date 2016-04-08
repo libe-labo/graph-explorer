@@ -58,6 +58,11 @@
         <div id="sigma-container"></div>
 
         <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript">
+            window.addEventListener('load', function() {
+                window.graph.start('steps.tsv', 'graph.json');
+            });
+        </script>
 
         <!-- Header -->
         <script type="text/javascript" src="http://www.liberation.fr/menu/script.js"></script>
