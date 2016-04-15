@@ -3,7 +3,7 @@
 * @Date:   2016-02-17T11:57:04+01:00
 * @Email:  hello@pauljoannon.com
 * @Last modified by:   paulloz
-* @Last modified time: 2016-04-15T11:28:31+02:00
+* @Last modified time: 2016-04-15T14:45:32+02:00
 */
 
 (function() {
@@ -16,7 +16,7 @@
     var ratio = window.innerWidth > 992 ? 0.2 : 0.15;
 
     var moveTo = (function() {
-        var timer, time = 50, totalTime = 300, currentTime;
+        var timer, time = 50, duration = 300, currentTime;
         return function(sigInstance, camera, x, y, ratio) {
             window.clearTimeout(timer);
 
@@ -25,9 +25,9 @@
 
             y += $('.steps p').height() * ratio;
 
-            var xScale = d3_scale.scaleLinear().range([camera.x, x]).domain([0, totalTime]),
-                yScale = d3_scale.scaleLinear().range([camera.y, y]).domain([0, totalTime]),
-                ratioScale = d3_scale.scaleLinear().range([camera.ratio, ratio]).domain([0, totalTime]);
+            var xScale = d3_scale.scaleLinear().range([camera.x, x]).domain([0, duration]),
+                yScale = d3_scale.scaleLinear().range([camera.y, y]).domain([0, duration]),
+                ratioScale = d3_scale.scaleLinear().range([camera.ratio, ratio]).domain([0, duration]);
 
             var update = function() {
                 window.clearTimeout(timer);
@@ -36,7 +36,7 @@
                 camera.y = yScale(currentTime);
                 camera.ratio = ratioScale(currentTime);
 
-                if (currentTime < totalTime) {
+                if (currentTime < duration) {
                     currentTime += time;
                     window.setTimeout(update, time);
                 }
@@ -83,7 +83,9 @@
                     var points = [];
                     sigInstance.graph.nodes().forEach(function(node) {
                         node.hidden = ids.indexOf(node.id) < 0;
-                        node.color = steps[newStep].ids.indexOf(node.id) >= 0 ? node.originalColor : idleColor;
+                        node.color = steps[newStep].ids.indexOf(node.id) >= 0
+                            ? node.originalColor
+                            : idleColor;
 
                         if (node.color === node.originalColor) {
                             points.push({
@@ -112,7 +114,8 @@
                                 // Compute angle to midpoint for each point
                                 point.angle = Math.atan2(point.y - midPoint.y, point.x - midPoint.x);
                             });
-                            points.sort(function(a, b) { return b.angle - a.angle; }); // And sort by angle
+                            // And sort by angle
+                            points.sort(function(a, b) { return b.angle - a.angle; });
                             // We now have a non self-intersecting polygon
                             var i, sum, sumX, sumY;
                             // Compute polygon's area
@@ -123,9 +126,11 @@
                             var a = (1/2) * sum;
                             // Compute centroid's x and y
                             for (i = 0, sumX = 0, sumY = 0; i < points.length; ++i) {
-                                var ip1 = i === points.length - 1 ? 0 : i + 1;
-                                sumX += (points[i].x + points[ip1].x) * ((points[i].x * points[ip1].y) - (points[ip1].x * points[i].y));
-                                sumY += (points[i].y + points[ip1].y) * ((points[i].x * points[ip1].y) - (points[ip1].x * points[i].y));
+                                var ip1 = (i === points.length - 1) ? 0 : i + 1;
+                                sumX += (points[i].x + points[ip1].x) *
+                                    ((points[i].x * points[ip1].y) - (points[ip1].x * points[i].y));
+                                sumY += (points[i].y + points[ip1].y) *
+                                    ((points[i].x * points[ip1].y) - (points[ip1].x * points[i].y));
                             }
                             x = (1 / (6 * a)) * sumX;
                             y = (1 / (6 * a)) * sumY;
@@ -134,7 +139,10 @@
 
                     if (steps[currentStep].text.length > 0) {
                         $('.steps p').first().html(
-                            '<span>' + steps[currentStep].slug + '</span> ' + steps[currentStep].text
+                            '<span>' +
+                                steps[currentStep].slug +
+                            '</span> ' +
+                            steps[currentStep].text
                         ).css('display', '');
                     } else {
                         $('.steps p').css('display', 'none');
@@ -146,25 +154,28 @@
                             sigInstance.cameras[0],
                             x, y,
                             currentStep === steps.length - 1
-                            ? ratio * 2.5
-                            : [6, 7].indexOf(currentStep) >= 0
-                            ? ratio * 1.5
-                            : ratio
+                                ? ratio * 2.5
+                                : [6, 7].indexOf(currentStep) >= 0
+                                    ? ratio * 1.5
+                                    : ratio
                         );
                     } else {
                         init = true;
-                        sigInstance.cameras[0].goTo({ x : x , y : y , ratio : ratio });
+                        sigInstance.cameras[0].goTo({ x: x, y: y, ratio: ratio });
                         sigInstance.refresh();
                     }
 
-                    $('.steps button').first().attr('disabled', currentStep === 0 ? 'disabled' : null);
-                    $('.steps button').last().attr('disabled', currentStep === steps.length - 1 ? 'disabled' : null);
+                    var buttons = $('.steps button');
+                    buttons.first().attr('disabled', currentStep === 0);
+                    buttons.last().attr('disabled', currentStep === steps.length - 1);
                 };
 
                 sigInstance.graph.nodes().forEach(function(node) {
                     node.originalColor = node.color;
                 });
-                sigInstance.graph.edges().forEach(function(edge) { edge.originalColor = edge.color = idleColor; });
+                sigInstance.graph.edges().forEach(function(edge) {
+                    edge.originalColor = edge.color = idleColor;
+                });
 
                 var search = parseInt(window.location.search.replace(/^\?/, '')),
                 step = isNaN(search) ? 0 : search < steps.length ? search : 0;
