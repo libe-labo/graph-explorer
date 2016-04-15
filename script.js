@@ -3,7 +3,7 @@
 * @Date:   2016-02-17T11:57:04+01:00
 * @Email:  hello@pauljoannon.com
 * @Last modified by:   paulloz
-* @Last modified time: 2016-04-08T12:02:41+02:00
+* @Last modified time: 2016-04-15T11:28:31+02:00
 */
 
 (function() {
@@ -132,9 +132,13 @@
                         }
                     }
 
-                    $('.steps p').first().html(
-                        '<span>' + steps[currentStep].slug + '</span> ' + steps[currentStep].text
-                    );
+                    if (steps[currentStep].text.length > 0) {
+                        $('.steps p').first().html(
+                            '<span>' + steps[currentStep].slug + '</span> ' + steps[currentStep].text
+                        ).css('display', '');
+                    } else {
+                        $('.steps p').css('display', 'none');
+                    }
 
                     if (init) {
                         moveTo(
