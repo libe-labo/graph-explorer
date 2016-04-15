@@ -170,28 +170,32 @@
                 step = isNaN(search) ? 0 : search < steps.length ? search : 0;
 
                 changeStep(0);
-                $('.steps').find('button').each(function(i) {
-                    $(this).bind('click', (function(i) {
-                        return function() {
-                            var newStep = currentStep + (i > 0 ? 1 : -1);
-                            if (newStep >= 0 && newStep < steps.length) {
-                                $('.help').removeClass('show');
-                                changeStep(newStep);
-                            }
-                        };
-                    })(i));
-                });
+                if (steps.length > 1) {
+                    $('.steps').find('button').each(function(i) {
+                        $(this).bind('click', (function(i) {
+                            return function() {
+                                var newStep = currentStep + (i > 0 ? 1 : -1);
+                                if (newStep >= 0 && newStep < steps.length) {
+                                    $('.help').removeClass('show');
+                                    changeStep(newStep);
+                                }
+                            };
+                        })(i));
+                    });
+
+                    setTimeout(function() {
+                        if (currentStep <= 0) {
+                            $('.help').addClass('show');
+                        }
+                    }, 1000);
+                } else {
+                    $('.steps').find('button').css('display', 'none');
+                }
 
                 setTimeout(function() {
                     sigInstance.cameras[0].ratio = ratio;
                     sigInstance.refresh();
                 }, 100);
-
-                setTimeout(function() {
-                    if (currentStep <= 0) {
-                        $('.help').addClass('show');
-                    }
-                }, 1000);
             });
         });
     };
